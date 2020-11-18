@@ -2,36 +2,50 @@ package masking
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 )
 
 func TestCreditCard(t *testing.T) {
-	var s CreditCard = "1234 5678 9012 3456"
-	b, err := json.Marshal(s)
+	var given CreditCard = "1234 5678 9012 3456"
+	want := `"**** **** **** 3456"`
+
+	get, err := json.Marshal(given)
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	fmt.Println(string(b))
+
+	if want != string(get) {
+		t.Errorf("given %q want %q but got %q\n", given, want, get)
+	}
 }
 
 func TestNationalID(t *testing.T) {
-	var s CreditCard = "1234567890123"
-	b, err := json.Marshal(s)
+	var given CreditCard = "1234567890123"
+	want := `"*********0123"`
+
+	get, err := json.Marshal(given)
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	fmt.Println(string(b))
+
+	if want != string(get) {
+		t.Errorf("given %q want %q but got %q\n", given, want, get)
+	}
 }
 
 func TestEmailAddress(t *testing.T) {
-	var s EmailAddress = "abc.def@gmail.com"
-	b, err := json.Marshal(s)
+	var given EmailAddress = "abc.def@gmail.com"
+	want := `"***%***@gmail.com"`
+
+	get, err := json.Marshal(given)
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	fmt.Println(string(b))
+
+	if want != string(get) {
+		t.Errorf("given %q want %q but got %q\n", given, want, get)
+	}
 }
