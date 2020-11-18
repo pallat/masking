@@ -25,3 +25,13 @@ func TestNationalID(t *testing.T) {
 	}
 	fmt.Println(string(b))
 }
+
+func TestEmailAddress(t *testing.T) {
+	var s EmailAddress = "abc.def@gmail.com"
+	b, err := json.Marshal(s)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println(string(b))
+}
