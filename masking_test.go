@@ -15,3 +15,13 @@ func TestCreditCard(t *testing.T) {
 	}
 	fmt.Println(string(b))
 }
+
+func TestNationalID(t *testing.T) {
+	var s CreditCard = "1234567890123"
+	b, err := json.Marshal(s)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println(string(b))
+}
